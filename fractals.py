@@ -51,7 +51,7 @@ while Show and CurrentIteration < MaxIterations:
 		x0, y0 = xticks[i], yticks[i]
 	CurrentIteration += IterationsPerFrame
 	plt.plot(xticks, yticks, 'r.')
-	plt.title("Serpinski randomised Triangle. Ineretions: {}".format(CurrentIteration))
+	plt.title("Serpinski randomised Triangle. Iterations: {}".format(CurrentIteration))
 	plt.connect('key_press_event', onkeypressed)
 	plt.pause(0.01)
 	
