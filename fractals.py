@@ -11,8 +11,8 @@ plt.gcf().canvas.set_window_title('Fractals demo with random. Press [ESC] to Exi
 plot_width = 500
 plot_height = plot_width
 CurrentIteration = 0
-IterationsPerFrame = 100
-MaxIterations = 10000
+IterationsPerFrame = 1000
+MaxIterations = 20000
 Show = True
 
 # Randomly plot first pixel
@@ -54,5 +54,7 @@ while Show and CurrentIteration < MaxIterations:
 	plt.title("Serpinski randomised Triangle. Ineretions: {}".format(CurrentIteration))
 	plt.connect('key_press_event', onkeypressed)
 	plt.pause(0.01)
+	
+plt.gcf().canvas.set_window_title('Fractal Paint finished. Just close this window.')	
 if 	CurrentIteration >= MaxIterations:
 	plt.show()
