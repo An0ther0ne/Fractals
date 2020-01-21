@@ -1,5 +1,5 @@
 # Fractals
-Few experiments with fractals and Python...
+Few experiments with chaos, fractals, and Python...
 
 ## Serpinski Randomised Triangle
 
