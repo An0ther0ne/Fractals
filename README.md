@@ -17,7 +17,7 @@ You can zoom In and Out of this figure.
 
 ## Serpinski Randomised Rectangle
 
-In the next figure shown rectangle, filled with similar chaos algorithm.
+In the next figure shown rectangle, filled with similar chaos algorithm. But in this case we have four vertices and are looking for 1/3 of distance instead of middle.
 ![Serpinski Randomised Triangle fig 2](img/Serpinski41.png)
 
 ## Requirements:
