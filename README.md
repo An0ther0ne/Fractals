@@ -4,6 +4,7 @@ Few experiments with chaos, fractals, and Python...
 ## Serpinski Randomised Triangle
 
 ![Serpinski Randomised Triangle fig 1](img/Serpinski3.png)
+
 You can zoom In and Out of this figure.
 
 ### Algorithm
@@ -18,10 +19,12 @@ You can zoom In and Out of this figure.
 ## Serpinski Randomised 4-point Rectangle
 
 In the next figure shown rectangle, filled with similar chaos algorithm. But in this case we have four vertices and are looking for 1/3 of distance instead of middle.
+
 ![Serpinski Randomised Triangle fig 2](img/Serpinski41.png)
 
 ## Serpinski Randomised 8-point Rectangle
-In this case we add middle point for each edge of previous rectangle. So our attractor now has total 8 points.
+In this case we add middle point for each edge of previous rectangle. So our attractor now has total of 8 points.
+
 ![Serpinski Randomised Triangle fig 3](img/Serpinski42.png)
 
 ## Requirements:
