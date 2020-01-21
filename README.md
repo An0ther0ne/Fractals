@@ -15,10 +15,14 @@ You can zoom In and Out of this figure.
 5. Store coordinates of dot point as new random instead of para 2.
 6. Repeat steps 3-5 as many times as you wish. 
 
-## Serpinski Randomised Rectangle
+## Serpinski Randomised 4-point Rectangle
 
 In the next figure shown rectangle, filled with similar chaos algorithm. But in this case we have four vertices and are looking for 1/3 of distance instead of middle.
 ![Serpinski Randomised Triangle fig 2](img/Serpinski41.png)
+
+## Serpinski Randomised 8-point Rectangle
+In this case we add middle point for each edge of previous rectangle. So our attractor now has total 8 points.
+![Serpinski Randomised Triangle fig 3](img/Serpinski42.png)
 
 ## Requirements:
 
