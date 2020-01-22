@@ -41,7 +41,7 @@ class Triangle(Attractor):
 		self.p3 = Point2D((base // 2, base*np.sqrt(3)//2))
 		self.points = [self.p1, self.p2, self.p3]
 	
-class Rectangle:
+class Rectangle(Attractor):
 	def __init__(self, title, base):
 		Attractor.__init__(self, title)
 		self.numpoints = 4
