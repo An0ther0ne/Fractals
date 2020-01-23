@@ -45,22 +45,23 @@ class Rectangle(Attractor):
 	def __init__(self, title, base):
 		Attractor.__init__(self, title)
 		self.numpoints = 4
-		self.p1 = Point2D((0,0))
-		self.p2 = Point2D((base,0))
-		self.p3 = Point2D((base,base))
-		self.p4 = Point2D((0,base))
-		self.points = [self.p1, self.p2, self.p3, self.p4]
+		p1 = Point2D((0,0))
+		p2 = Point2D((base,0))
+		p3 = Point2D((base,base))
+		p4 = Point2D((0,base))
+		self.points = [p1, p2, p3, p4]
 		
 class Rectangle8p(Rectangle):
 	def __init__(self, title, base):
 		Rectangle.__init__(self, title, base)
-		self.numpoints = 8
-		self.p12 = Point2D(self.p1.GetMidpoint(self.p2))
-		self.p23 = Point2D(self.p2.GetMidpoint(self.p3))
-		self.p34 = Point2D(self.p3.GetMidpoint(self.p4))
-		self.p41 = Point2D(self.p4.GetMidpoint(self.p1))
-		self.points = [self.p1, self.p12, self.p2, self.p23, self.p3, self.p34, self.p4, self.p41]
-
+		for i in range(len(self.points)):
+			j = i << 1
+			k = (j+1) % len(self.points)
+			p1 = self.points[j]
+			p2 = self.points[k]
+			self.points.insert(j+1, Point2D(p1.GetMidpoint(p2)))
+		self.numpoints = len(self.points)
+		
 class FractalsCollection:
 	def __init__(self, canvassize, maxiterations):
 		self.collection = []
