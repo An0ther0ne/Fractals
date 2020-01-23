@@ -27,6 +27,22 @@ In this case we add middle point for each edge of previous rectangle. So our att
 
 ![Serpinski Randomised Triangle fig 3](img/Serpinski42.png)
 
+## Serpinski Pentagon
+
+![Serpinski Pentagon fig 4](img/serp5.png)
+
+## Serpinski Hexagon 
+
+![Serpinski Hexagon fig 5](img/serp6.png)
+
+## Serpinski Heptagon
+
+![Serpinski Heptagon fig 6](img/serp7.png)
+
+## Serpinski Octagon
+
+![Serpinski Octagon fig 7](img/serp8.png)
+
 ## Requirements:
 
 * Python

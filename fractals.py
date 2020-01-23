@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-# Serpinski Triangle with random and matplotlib
+# Serpinski Triangle with chaos method and matplotlib
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,51 +26,50 @@ class Point2D:
 		return (x,y)		
 	def GetMidpoint(self, p2):
 		return self.GetDistancePart(p2, 2)
+	def PrintPoint(self):
+		print("x={}, y={}".format(self.x, self.y))
 
 class Attractor:
 	def __init__(self, title):
 		self.title = title
 		self.numpoints = 0
 		
-class Triangle(Attractor):
-	def __init__(self, title, base):
+class FractalObject(Attractor):
+	def __init__(self, title, base, numpoints, midpoints=False):
 		Attractor.__init__(self, title)
-		self.numpoints = 3
-		self.p1 = Point2D((0, 0))
-		self.p2 = Point2D((base, 0))
-		self.p3 = Point2D((base // 2, base*np.sqrt(3)//2))
-		self.points = [self.p1, self.p2, self.p3]
-	
-class Rectangle(Attractor):
-	def __init__(self, title, base):
-		Attractor.__init__(self, title)
-		self.numpoints = 4
-		p1 = Point2D((0,0))
-		p2 = Point2D((base,0))
-		p3 = Point2D((base,base))
-		p4 = Point2D((0,base))
-		self.points = [p1, p2, p3, p4]
-		
-class Rectangle8p(Rectangle):
-	def __init__(self, title, base):
-		Rectangle.__init__(self, title, base)
-		for i in range(len(self.points)):
-			j = i << 1
-			k = (j+1) % len(self.points)
-			p1 = self.points[j]
-			p2 = self.points[k]
-			self.points.insert(j+1, Point2D(p1.GetMidpoint(p2)))
+		self.points=[]
+		x0 = y0 = base // 2
+		R = np.sqrt(base*base/2)
+		for i in range(numpoints):
+			A = np.pi
+			A = 2*i*A/numpoints - A*(numpoints - 2)/2/numpoints
+			x = np.round(x0 - R*np.cos(A))
+			y = np.round(y0 + R*np.sin(A))
+			p2 = Point2D((x, y))
+			if midpoints and i>0:
+				p1 = self.points[len(self.points)-1]
+				self.points.append(Point2D(p1.GetMidpoint(p2)))
+			self.points.append(p2)
+		if midpoints:
+			p1 = self.points[0]
+			self.points.append(Point2D(p2.GetMidpoint(p1)))
 		self.numpoints = len(self.points)
-		
+	def PrintPoints(self):
+		for i,p in enumerate(self.points):
+			print(i,'::', end='')
+			p.PrintPoint()
+
 class FractalsCollection:
 	def __init__(self, canvassize, maxiterations):
 		self.collection = []
 		self.dividers = []
 		self.canvassize = canvassize
 		self.maxiterations = maxiterations
-	def additem(self, item, divider):
+	def AddItem(self, item, divider):
 		self.collection.append(item)
 		self.dividers.append(divider)
+	def GetItem(self, item):
+		return self.collection[item]
 	def WaitForKeyPressed(self):
 		global Show
 		plt.gcf().canvas.set_window_title('Fractal paint finished. Press [ESC] to the next one.')
@@ -113,7 +112,15 @@ class FractalsCollection:
 		plt.show()
 		
 myfractals = FractalsCollection(CanvasSize, MaxIterations)
-myfractals.additem(Triangle("Serpinski 3-point Triangle.", CanvasSize), 2)
-myfractals.additem(Rectangle("Serpinski 4-point Rectangle.", CanvasSize), 3)
-myfractals.additem(Rectangle8p("Serpinski 8-point Rectangle.", CanvasSize), 3)
+myfractals.AddItem(FractalObject("Serpinski 3-point Triangle.", CanvasSize, 3), 2)
+myfractals.AddItem(FractalObject("Serpinski 4-point Rectangle.", CanvasSize, 4), 3)
+myfractals.AddItem(FractalObject("Serpinski 8-point Rectangle.", CanvasSize, 4, True), 3)
+myfractals.AddItem(FractalObject("Serpinski Pentagon", CanvasSize, 5), 3)
+myfractals.AddItem(FractalObject("Serpinski double points Pentagon", CanvasSize, 5, True), 3)
+myfractals.AddItem(FractalObject("Serpinski Hexagon", CanvasSize, 6), 3)
+myfractals.AddItem(FractalObject("Serpinski double points Hexagon", CanvasSize, 6, True), 4)
+myfractals.AddItem(FractalObject("Serpinski Heptagon", CanvasSize, 7), 3)
+myfractals.AddItem(FractalObject("Serpinski double points Heptagon", CanvasSize, 7, True), 4)
+myfractals.AddItem(FractalObject("Serpinski Octagon", CanvasSize, 8), 3)
+myfractals.AddItem(FractalObject("Serpinski double points Octagon", CanvasSize, 8, True), 4)
 myfractals.ShowCollection()
